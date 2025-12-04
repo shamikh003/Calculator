@@ -1,25 +1,41 @@
 :root {
     --bg-color: #f0f0f0;
-    --calculator-bg: #ffffff;
-    --display-bg: #eeeeee;
+    
+    /* Colors (Same as before) */
+    --calculator-bg: rgba(255, 255, 255, 0.25);
+    --display-bg: rgba(255, 255, 255, 0.6);
     --text-color: #333333;
-    --button-bg: #fafafa;
-    --button-hover-bg: #e0e0e0;
-    --operator-button-bg: #f0f0f0;
+    --button-bg: rgba(255, 255, 255, 0.8);
+    --button-hover-bg: #ffffff;
+    --operator-button-bg: rgba(240, 240, 240, 0.9);
     --equals-button-bg: #4caf50;
     --equals-button-hover-bg: #45a049;
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+    /* --- BACKGROUND LOGIC CHANGE --- */
+    /* Light mode mein tasveer saaf nazar aaye (No dark overlay) */
+    --bg-overlay: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
 }
 
 .dark-mode {
     --bg-color: #121212;
-    --calculator-bg: #1e1e1e;
-    --display-bg: #2a2a2a;
+    
+    /* Colors (Same as before) */
+    --calculator-bg: rgba(16, 16, 16, 0.65); 
+    --display-bg: rgba(0, 0, 0, 0.5);
     --text-color: #f5f5f5;
-    --button-bg: #333333;
-    --button-hover-bg: #444444;
-    --operator-button-bg: #2c2c2c;
+    --button-bg: rgba(50, 50, 50, 0.7);
+    --button-hover-bg: rgba(70, 70, 70, 0.9);
+    --operator-button-bg: rgba(40, 40, 40, 0.8);
     --equals-button-bg: #00796b;
     --equals-button-hover-bg: #00695c;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+
+    /* --- DARK MODE OVERLAY --- */
+    /* Dark mode mein tasveer ke oopar 80% kaala rang aa jayega */
+    --bg-overlay: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
 }
 
 body {
@@ -28,24 +44,39 @@ body {
     min-height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: var(--bg-color);
+    
+    /* --- YEH CHANGE KIYA HAI --- */
+    /* Pehle overlay, phir image URL */
+    background-image: var(--bg-overlay), url('bg.jpg');
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
     color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
+    transition: all 0.4s ease;
 }
 
 .calculator {
     width: 90vw;
     max-width: 380px;
-    background-color: var(--calculator-bg);
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    
+    /* --- GLASSMORHISM EFFECT --- */
+    background: var(--calculator-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    /* -------------------------- */
+
+    border-radius: 20px;
     padding: 25px;
     overflow: hidden;
-    transition: background-color 0.3s;
+    transition: background 0.3s, box-shadow 0.3s;
     box-sizing: border-box;
 }
 
-/* Control panel ko align karna */
 .control-panel {
     display: flex;
     justify-content: space-between;
@@ -53,38 +84,30 @@ body {
     margin-bottom: 15px;
 }
 
-/* Sirf mode toggle button ki styling */
 #mode-toggle {
-    padding: 8px 12px;
+    padding: 6px 15px;
     border: none;
-    border-radius: 8px;
-    background-color: var(--button-bg);
+    border-radius: 20px;
+    background-color: var(--operator-button-bg);
     color: var(--text-color);
     cursor: pointer;
     font-weight: bold;
     font-size: 0.9em;
-    background-color: var(--operator-button-bg);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-
-/* --- YAHAN NAYE SWITCH KI STYLING ADD KI GAYI HAI --- */
-
-/* Switch ka container */
+/* --- TOGGLE SWITCH STYLING --- */
 .switch {
   position: relative;
   display: inline-block;
   width: 50px;
-  height: 28px;
+  height: 26px;
 }
-
-/* Default checkbox ko chupana */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-
-/* Switch ka background (slider) */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -92,40 +115,31 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc; /* "Off" state ka color (Light mode) */
+  background-color: #ccc;
   transition: .4s;
-  border-radius: 28px;
+  border-radius: 34px;
 }
-
-/* Switch ka circle */
 .slider:before {
   position: absolute;
   content: "";
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
   left: 4px;
   bottom: 4px;
   background-color: white;
   transition: .4s;
   border-radius: 50%;
 }
-
-/* "On" state (jab checked ho) */
 input:checked + .slider {
-  background-color: var(--equals-button-bg); /* "On" state ka color */
+  background-color: var(--equals-button-bg);
 }
-
-/* "Off" state (Dark mode mein) */
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
 .dark-mode .slider {
     background-color: #555;
 }
-
-/* Circle ko right move karna jab "On" ho */
-input:checked + .slider:before {
-  transform: translateX(22px);
-}
-/* --- Switch ki styling khatam --- */
-
+/* -------------------------- */
 
 .display {
     width: 100%;
@@ -135,30 +149,38 @@ input:checked + .slider:before {
     border: none;
     background-color: var(--display-bg);
     color: var(--text-color);
-    border-radius: 10px;
+    border-radius: 12px;
     margin-bottom: 20px;
     box-sizing: border-box;
+    /* Display par bhi halka glass effect */
+    backdrop-filter: blur(5px);
 }
 
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    gap: 12px;
 }
 
 .buttons button {
     padding: 15px;
     font-size: 1.2em;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     background-color: var(--button-bg);
     color: var(--text-color);
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .buttons button:hover {
     background-color: var(--button-hover-bg);
+    transform: translateY(-2px);
+}
+
+.buttons button:active {
+    transform: translateY(0);
 }
 
 .buttons button.operator {
@@ -175,6 +197,7 @@ input:checked + .slider:before {
     background-color: var(--equals-button-hover-bg);
 }
 
+/* Responsive Fix */
 @media (max-width: 400px) {
     .calculator {
         padding: 15px;
@@ -185,7 +208,7 @@ input:checked + .slider:before {
         padding: 12px;
     }
     .buttons {
-        gap: 10px;
+        gap: 8px;
     }
     .buttons button {
         padding: 12px;
