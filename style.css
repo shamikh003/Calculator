@@ -1,0 +1,194 @@
+:root {
+    --bg-color: #f0f0f0;
+    --calculator-bg: #ffffff;
+    --display-bg: #eeeeee;
+    --text-color: #333333;
+    --button-bg: #fafafa;
+    --button-hover-bg: #e0e0e0;
+    --operator-button-bg: #f0f0f0;
+    --equals-button-bg: #4caf50;
+    --equals-button-hover-bg: #45a049;
+}
+
+.dark-mode {
+    --bg-color: #121212;
+    --calculator-bg: #1e1e1e;
+    --display-bg: #2a2a2a;
+    --text-color: #f5f5f5;
+    --button-bg: #333333;
+    --button-hover-bg: #444444;
+    --operator-button-bg: #2c2c2c;
+    --equals-button-bg: #00796b;
+    --equals-button-hover-bg: #00695c;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.calculator {
+    width: 90vw;
+    max-width: 380px;
+    background-color: var(--calculator-bg);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    overflow: hidden;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+}
+
+/* Control panel ko align karna */
+.control-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Sirf mode toggle button ki styling */
+#mode-toggle {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9em;
+    background-color: var(--operator-button-bg);
+}
+
+
+/* --- YAHAN NAYE SWITCH KI STYLING ADD KI GAYI HAI --- */
+
+/* Switch ka container */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+/* Default checkbox ko chupana */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Switch ka background (slider) */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc; /* "Off" state ka color (Light mode) */
+  transition: .4s;
+  border-radius: 28px;
+}
+
+/* Switch ka circle */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+/* "On" state (jab checked ho) */
+input:checked + .slider {
+  background-color: var(--equals-button-bg); /* "On" state ka color */
+}
+
+/* "Off" state (Dark mode mein) */
+.dark-mode .slider {
+    background-color: #555;
+}
+
+/* Circle ko right move karna jab "On" ho */
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+/* --- Switch ki styling khatam --- */
+
+
+.display {
+    width: 100%;
+    padding: 15px;
+    font-size: 2.2em;
+    text-align: right;
+    border: none;
+    background-color: var(--display-bg);
+    color: var(--text-color);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.buttons button {
+    padding: 15px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.buttons button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.buttons button.operator {
+    background-color: var(--operator-button-bg);
+    font-weight: bold;
+}
+
+.buttons button.equals {
+    background-color: var(--equals-button-bg);
+    color: white;
+}
+
+.buttons button.equals:hover {
+    background-color: var(--equals-button-hover-bg);
+}
+
+@media (max-width: 400px) {
+    .calculator {
+        padding: 15px;
+        width: 95vw;
+    }
+    .display {
+        font-size: 2em;
+        padding: 12px;
+    }
+    .buttons {
+        gap: 10px;
+    }
+    .buttons button {
+        padding: 12px;
+        font-size: 1.1em;
+    }
+}

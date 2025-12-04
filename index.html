@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="calculator">
+        <div class="control-panel">
+            <button id="mode-toggle">DEG</button>
+            
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle-checkbox">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <input type="text" class="display" readonly>
+
+        <div class="buttons">
+            <button data-value="sin(" class="operator">sin</button>
+            <button data-value="cos(" class="operator">cos</button>
+            <button data-value="tan(" class="operator">tan</button>
+            <button data-value="AC" class="operator">AC</button>
+            
+            <button data-value="(" class="operator">(</button>
+            <button data-value=")" class="operator">)</button>
+            <button data-value="DEL" class="operator">DEL</button>
+            <button data-value="/" class="operator">/</button>
+
+            <button data-value="7">7</button>
+            <button data-value="8">8</button>
+            <button data-value="9">9</button>
+            <button data-value="*" class="operator">*</button>
+
+            <button data-value="4">4</button>
+            <button data-value="5">5</button>
+            <button data-value="6">6</button>
+            <button data-value="-" class="operator">-</button>
+
+            <button data-value="1">1</button>
+            <button data-value="2">2</button>
+            <button data-value="3">3</button>
+            <button data-value="+" class="operator">+</button>
+
+            <button data-value="0">0</button>
+            <button data-value="." class="operator">.</button>
+            <button data-value="π" class="operator">&pi;</button>
+            <button data-value="=" class="equals">=</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
