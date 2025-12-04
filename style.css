@@ -1,7 +1,7 @@
 :root {
-    --bg-color: #f0f0f0;
+    --bg-color: #f0f0f0; /* Light Grey Background */
     
-    /* Colors (Same as before) */
+    /* Calculator Colors */
     --calculator-bg: rgba(255, 255, 255, 0.25);
     --display-bg: rgba(255, 255, 255, 0.6);
     --text-color: #333333;
@@ -10,18 +10,16 @@
     --operator-button-bg: rgba(240, 240, 240, 0.9);
     --equals-button-bg: #4caf50;
     --equals-button-hover-bg: #45a049;
+    
+    /* Glass Effect Variables */
     --glass-border: rgba(255, 255, 255, 0.5);
-    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-
-    /* --- BACKGROUND LOGIC CHANGE --- */
-    /* Light mode mein tasveer saaf nazar aaye (No dark overlay) */
-    --bg-overlay: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
 }
 
 .dark-mode {
-    --bg-color: #121212;
+    --bg-color: #121212; /* Dark Black Background */
     
-    /* Colors (Same as before) */
+    /* Calculator Colors */
     --calculator-bg: rgba(16, 16, 16, 0.65); 
     --display-bg: rgba(0, 0, 0, 0.5);
     --text-color: #f5f5f5;
@@ -30,12 +28,10 @@
     --operator-button-bg: rgba(40, 40, 40, 0.8);
     --equals-button-bg: #00796b;
     --equals-button-hover-bg: #00695c;
+    
+    /* Dark Glass Effect */
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-
-    /* --- DARK MODE OVERLAY --- */
-    /* Dark mode mein tasveer ke oopar 80% kaala rang aa jayega */
-    --bg-overlay: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
 }
 
 body {
@@ -45,14 +41,8 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     
-    /* --- YEH CHANGE KIYA HAI --- */
-    /* Pehle overlay, phir image URL */
-    background-image: var(--bg-overlay), url('bg.jpg');
-    
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* Sirf rang (Color) use hoga, Image nahi */
+    background-color: var(--bg-color);
     
     color: var(--text-color);
     transition: all 0.4s ease;
@@ -152,7 +142,6 @@ input:checked + .slider:before {
     border-radius: 12px;
     margin-bottom: 20px;
     box-sizing: border-box;
-    /* Display par bhi halka glass effect */
     backdrop-filter: blur(5px);
 }
 
